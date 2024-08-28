@@ -1,9 +1,5 @@
 package com.example.material_design.MaterialDesign
 
-import android.graphics.fonts.FontStyle
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -12,28 +8,30 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
-import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Shadow
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextDecoration
-import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.pointer.motionEventSpy
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 
@@ -91,16 +89,14 @@ fun AllButton() {
         val option = listOf("Java", "Kotlin", "Spring")
         var selectOption = remember { mutableStateOf(option[2]) }
         Column(
-            modifier = Modifier.padding(10.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
+            modifier = Modifier.padding(10.dp), horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
             Text(text = "Choose language ")
             option.forEach { option ->
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 8.dp)
 
                 ) {
                     RadioButton(
@@ -126,25 +122,86 @@ fun ComponentTesting() {
 
     ) {
         val (text1, text2) = createRefs()
-        TextField(
-            value = "",
+        TextField(value = "",
             onValueChange = {},
             placeholder = { Text(text = "Enter your name") },
-            modifier = Modifier
-                .constrainAs(text1) {
+            modifier = Modifier.constrainAs(text1) {
 
-                }
-        )
-        TextField(
-            value = "",
+            })
+        TextField(value = "",
             onValueChange = {},
             placeholder = { Text(text = "Enter your name") },
-            modifier = Modifier
-                .constrainAs(text2) {
-                    top.linkTo(text1.bottom)
-                }
-        )
+            modifier = Modifier.constrainAs(text2) {
+                top.linkTo(text1.bottom)
+            })
 
+
+        // Check box
 
     }
+
+}
+
+@Composable
+fun TestCheck() {
+    val notification = remember { mutableStateOf(false) }
+    Column(modifier = Modifier.padding(16.dp)) {
+        Text(text = "Enable Notification")
+        Checkbox(checked = notification.value, onCheckedChange = { notification.value = it })
+        Text(text = if (notification.value) "Notifications Enabled" else "Notifications Disabled")
+    }
+}
+
+@Composable
+fun DropDown() {
+    var expanded = remember {
+        mutableStateOf(false)
+    }
+    var selectedOption = remember {
+        mutableStateOf("Select an option ")
+
+    }
+    val option = listOf("option1", "option2", "option3", "option4")
+    OutlinedButton(onClick = { expanded.value = true }, modifier = Modifier.fillMaxWidth()) {
+        Text(text = "selectedOption")
+    }
+    DropdownMenu(expanded = expanded.value, onDismissRequest = { expanded.value = false }) {
+        option.forEach { option ->
+            DropdownMenuItem(text = { Text(text = option) }, onClick = {
+                selectedOption.value = option
+                expanded.value = false
+            })
+        }
+    }
+}
+
+@Composable
+fun MyAlertDialog(shouldShowDialog: MutableState<Boolean>) {
+    if (shouldShowDialog.value) {
+        AlertDialog(onDismissRequest = { shouldShowDialog.value = false },
+            title = { Text(text = "Alert dialog", color = Color.Blue) },
+            confirmButton = {
+                Button(onClick = { shouldShowDialog.value = false }) {
+                    Text(
+                        text = "Confirm", color = Color.White
+                    )
+                }
+            })
+    }
+}
+
+@Composable
+fun MainScreen(
+
+) {
+    Row(modifier = Modifier.padding(50.dp)) {
+        val shouldShowDialog = remember { mutableStateOf(false) }
+        if (shouldShowDialog.value) {
+            MyAlertDialog(shouldShowDialog = shouldShowDialog)
+        }
+        Button(onClick = { shouldShowDialog.value = true }, modifier = Modifier.wrapContentSize()) {
+            Text(text = "Show Dialog")
+        }
+    }
+
 }
