@@ -33,11 +33,13 @@ import com.example.material_design.Grid.GridLayOut
 import com.example.material_design.Grid.LazyVerticalGrid.Flag
 import com.example.material_design.Grid.LazyVerticalGrid.LazyVerticalGrid
 import com.example.material_design.Grid.LazyVerticalGrid.MyGrid
+import com.example.material_design.Layout.Avatar
 import com.example.material_design.MaterialDesign.AllButton
 import com.example.material_design.MaterialDesign.DropDown
 import com.example.material_design.MaterialDesign.MainScreen
 import com.example.material_design.MaterialDesign.MyAlertDialog
 import com.example.material_design.MaterialDesign.TestCheck
+import com.example.material_design.Scaffold.SmallTopAppBarExample
 import com.example.material_design.ui.theme.Material_DesignTheme
 import java.util.Properties
 
@@ -59,7 +61,9 @@ class MainActivity : ComponentActivity() {
 //                GridLayOut()
 //                LazyVerticalGrid()
 //                MyGrid()
-                Flag()
+//                Flag()
+//                Avatar()
+                SmallTopAppBarExample()
             }
         }
     }
