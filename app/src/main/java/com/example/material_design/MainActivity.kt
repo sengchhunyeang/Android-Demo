@@ -29,6 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.example.material_design.Grid.GridLayOut
+import com.example.material_design.Grid.LazyVerticalGrid.LazyVerticalGrid
 import com.example.material_design.MaterialDesign.AllButton
 import com.example.material_design.MaterialDesign.DropDown
 import com.example.material_design.MaterialDesign.MainScreen
@@ -44,7 +46,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             Material_DesignTheme {
 //                ConstraintLayoutDemo()
-                Flexible()
+//                Flexible()
 //                TextExample()
 //               ConstraintAs()
 //                ComponentTesting()
@@ -52,6 +54,8 @@ class MainActivity : ComponentActivity() {
 //                TestCheck()
 //                MainScreen()
 //                WrappedButton()
+//                GridLayOut()
+                LazyVerticalGrid()
             }
         }
     }
