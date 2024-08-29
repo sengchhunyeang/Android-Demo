@@ -38,6 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.material_design.R
 
+
 @Composable
 fun Flag() {
     val flags =
@@ -57,7 +58,7 @@ fun Flag() {
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Text(
-            text = "Flag Of Asia ", modifier = Modifier.padding(15.dp),
+            text = "Flag Of Asian ", modifier = Modifier.padding(15.dp),
             fontSize = 30.sp, color = Color.Blue
         )
         LazyVerticalGrid(
