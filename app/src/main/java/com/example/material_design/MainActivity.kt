@@ -60,10 +60,10 @@ class MainActivity : ComponentActivity() {
 //                WrappedButton()
 //                GridLayOut()
 //                LazyVerticalGrid()
-//                MyGrid()
+                MyGrid()
 //                Flag()
 //                Avatar()
-                SmallTopAppBarExample()
+//                SmallTopAppBarExample()
             }
         }
     }
