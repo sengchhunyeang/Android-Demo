@@ -26,7 +26,8 @@ import androidx.navigation.compose.rememberNavController
 import java.security.AccessController
 
 @Composable
-fun MainNavGraph(navController: NavHostController) {
+fun MainNavGraph() {
+    val navController = rememberNavController()
     NavHost(navController = navController, startDestination = "home") {
         composable("home") { HomeScreen(navController) }
         navigation(startDestination = "profile", route = "profile_graph") {
@@ -55,7 +56,7 @@ fun HomeScreen(navController: NavHostController) {
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = "Home Screen", modifier = Modifier, color = Color.White, fontSize = 30.sp
+                    text = "Home Screen", modifier = Modifier.align(Alignment.Center), color = Color.White, fontSize = 30.sp
                 )
             }
             Button(
@@ -65,8 +66,7 @@ fun HomeScreen(navController: NavHostController) {
                 Text(text = "Go to profile")
             }
         }
-
-
+        
     }
 }
 
@@ -86,7 +86,7 @@ fun ProfileScreen(navController: NavHostController) {
                     .fillMaxWidth()
             ) {
                 Text(
-                    text = "Details",
+                    text = "Profile",
                     modifier = Modifier.align(Alignment.Center),
                     color = Color.White,
                     fontSize = 30.sp
@@ -111,7 +111,7 @@ fun ProfileDetailsScreen(navController: NavHostController) {
         ) {
             Box(
                 modifier = Modifier
-                    .background(Color.Magenta)
+                    .background(Color.Blue)
                     .padding(20.dp)
                     .fillMaxWidth()
                     .align(Alignment.CenterHorizontally)
@@ -119,9 +119,10 @@ fun ProfileDetailsScreen(navController: NavHostController) {
             ) {
                 Text(
                     text = "Profile details",
-                    modifier = Modifier,
+                    modifier = Modifier.align(Alignment.Center),
                     color = Color.White,
                     fontSize = 30.sp
+
 
                 )
             }
@@ -135,6 +136,5 @@ fun ProfileDetailsScreen(navController: NavHostController) {
 
 @Composable
 fun NestedNavigation() {
-    val navController = rememberNavController()
-    MainNavGraph(navController)
+    MainNavGraph()
 }
