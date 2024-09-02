@@ -1,5 +1,6 @@
 package com.example.material_design
 
+import NestedNavigation
 import android.os.Bundle
 import android.widget.CheckBox
 import androidx.activity.ComponentActivity
@@ -63,7 +64,8 @@ class MainActivity : ComponentActivity() {
 //                MyGrid()
 //                Flag()
 //                Avatar()
-                SmallTopAppBarExample()
+//                SmallTopAppBarExample()
+                NestedNavigation()
             }
         }
     }

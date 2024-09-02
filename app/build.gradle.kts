@@ -62,7 +62,10 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
     implementation(libs.androidx.constraintlayout.compose)
-
+    implementation(libs.androidx.navigation.ui)
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.androidx.navigation.runtime.ktx)
 //    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
