@@ -22,6 +22,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
+import com.example.material_design.DataStorage.ExternalStorageExample
+import com.example.material_design.DataStorage.InternalStorage
+
 import com.example.material_design.ui.theme.Material_DesignTheme
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +48,10 @@ class MainActivity : ComponentActivity() {
 //                Flag()
 //                Avatar()
 //                SmallTopAppBarExample()
-                NestedNavigation()
+//                NestedNavigation()
+                InternalStorage()
+//                InternalStorageExample()
+//                ExternalStorageExample()
             }
         }
     }
@@ -128,95 +134,6 @@ fun AdvancedConstrainLayout() {
         })
     }
 }
-
-
-//@Composable
-//fun ConstraintLayoutDemo() {
-//    ConstraintLayout(modifier = Modifier.size(200.dp)) {
-//        val (redBox, blueBox, yellowBox, text) = createRefs()
-//
-//        Box(modifier = Modifier
-//            .size(50.dp)
-//            .background(Color.Red)
-//            .constrainAs(redBox) {})
-//
-//        Box(modifier = Modifier
-//            .size(50.dp)
-//            .background(Color.Blue)
-//            .constrainAs(blueBox) {
-//                top.linkTo(redBox.bottom)
-//                start.linkTo(redBox.end)
-//            })
-//
-//        Box(modifier = Modifier
-//            .size(50.dp)
-//            .background(Color.Yellow)
-//            .constrainAs(yellowBox) {
-//                bottom.linkTo(blueBox.bottom)
-//                start.linkTo(blueBox.end, 20.dp)
-//            })
-//
-//        Text("Hello World", modifier = Modifier.constrainAs(text) {
-//            top.linkTo(parent.top)
-//            start.linkTo(yellowBox.start)
-//        })
-//
-//    }
-//}
-
-
-//@Composable
-//fun ConstraintLayoutDemo() {
-//    ConstraintLayout(modifier = Modifier.size(200.dp)) {
-//        val (redBox, blueBox, yellowBox, text, anotherYellowBox) = createRefs()
-//
-//        Box(
-//            modifier = Modifier
-//                .size(50.dp)
-//                .background(Color.Red)
-//                .constrainAs(redBox) {}
-//        )
-//
-//        Box(
-//            modifier = Modifier
-//                .size(50.dp)
-//                .background(Color.Blue)
-//                .constrainAs(blueBox) {
-//                    top.linkTo(redBox.bottom)
-//                    start.linkTo(redBox.end)
-//                }
-//        )
-//
-//        Box(
-//            modifier = Modifier
-//                .size(50.dp)
-//                .background(Color.Yellow)
-//                .constrainAs(yellowBox) {
-//                    bottom.linkTo(blueBox.bottom)
-//                    start.linkTo(blueBox.end, 20.dp)
-//                }
-//        )
-//
-//        Box(
-//            modifier = Modifier
-//                .size(50.dp)
-//                .background(Color.Yellow)
-//                .constrainAs(anotherYellowBox) { // New unique reference
-//                    bottom.linkTo(blueBox.bottom)
-//                    start.linkTo(blueBox.end, 20.dp)
-//                }
-//        )
-//
-//        Text(
-//            text = "Hello World",
-//            modifier = Modifier.constrainAs(text) {
-//                top.linkTo(parent.top)
-//                start.linkTo(yellowBox.start)
-//            }
-//        )
-//    }
-//}
-
 
 @Composable
 fun ConstraintLayoutDemo() {
