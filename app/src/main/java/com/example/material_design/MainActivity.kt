@@ -24,6 +24,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.example.material_design.DataStorage.ExternalStorageExample
 import com.example.material_design.DataStorage.InternalStorage
+import com.example.material_design.LanguageAndFont.Homescreen
 
 import com.example.material_design.ui.theme.Material_DesignTheme
 
@@ -49,9 +50,10 @@ class MainActivity : ComponentActivity() {
 //                Avatar()
 //                SmallTopAppBarExample()
 //                NestedNavigation()
-                InternalStorage()
+//                InternalStorage()
 //                InternalStorageExample()
 //                ExternalStorageExample()
+                Homescreen()
             }
         }
     }

@@ -66,7 +66,13 @@ dependencies {
     implementation(libs.androidx.material)
     implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.navigation.runtime.ktx)
+    implementation(libs.androidx.datastore.core.android)
+    implementation(libs.androidx.datastore.preferences.core.jvm)
+    implementation(libs.androidx.runtime.livedata)
 //    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
+    implementation("androidx.datastore:datastore:1.0.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
