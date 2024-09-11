@@ -73,12 +73,10 @@ dependencies {
     implementation(libs.androidx.datastore.preferences)
     implementation(libs.androidx.datastore)
 // fetching data dependency
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
     implementation (libs.androidx.lifecycle.runtime.ktx.v250) // ViewModel and LiveData
     implementation (libs.retrofit)
     implementation (libs.converter.gson)
-
+    implementation(libs.coil.compose)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

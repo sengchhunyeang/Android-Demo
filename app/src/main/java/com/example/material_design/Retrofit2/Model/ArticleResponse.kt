@@ -15,7 +15,7 @@ data class ArticleResponse(
 
 data class ApiResponse(
     @SerializedName("message") val message: String,
-    @SerializedName("payload") val payload: List<ArticleResponse>,
+    @SerializedName("payload") val payload: List<ArticleResponse>?,
     @SerializedName("status") val status: String,
     @SerializedName("timestamp") val timestamp: String
 )
