@@ -70,8 +70,14 @@ dependencies {
     implementation(libs.androidx.datastore.preferences.core.jvm)
     implementation(libs.androidx.runtime.livedata)
 //    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.1")
-    implementation("androidx.datastore:datastore-preferences:1.0.0")
-    implementation("androidx.datastore:datastore:1.0.0")
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.androidx.datastore)
+// fetching data dependency
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
+    implementation (libs.androidx.lifecycle.runtime.ktx.v250) // ViewModel and LiveData
+    implementation (libs.retrofit)
+    implementation (libs.converter.gson)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
