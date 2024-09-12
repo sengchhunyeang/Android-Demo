@@ -1,4 +1,4 @@
-package com.example.material_design.Retrofit2.API
+package com.example.material_design.Retrofit2.Model
 
 data class ArticleRequest (
     val title: String,

@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.example.material_design.Retorfit.API.RetrofitInstant
 import com.example.material_design.Retorfit.Model.ApiResponse
 import com.example.material_design.Retorfit.Model.ArticleResponse
+import com.example.material_design.Retrofit2.Model.ArticleRequest
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -34,6 +35,23 @@ class ViewModel : ViewModel() {
                 Log.e("ViewModel", "Failure: ${t.message}")
                 _articles.value = emptyList()
             }
+        })
+    }
+    fun createArticle(article: ArticleRequest, onSuccess:()->Unit, onFailure:(String)->Unit){
+        val apiService=RetrofitInstant.apiService
+        apiService.createArticle(article).enqueue(object :Callback<Void>{
+            override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                if (response.isSuccessful){
+                    onSuccess()
+                }else{
+                    onFailure("Failed to create article")
+                }
+            }
+
+            override fun onFailure(call: Call<Void>, t: Throwable) {
+                onFailure(t.message?:"An error occurred")
+            }
+
         })
     }
 }
