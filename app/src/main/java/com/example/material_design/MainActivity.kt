@@ -1,10 +1,12 @@
 package com.example.material_design
 
+import InsertArticleScreen
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -55,6 +57,9 @@ fun NavGraph(navController: NavHostController) {
     NavHost(navController = navController, startDestination = "list_screen") {
         composable(Screen.ListScreen.route) {
             ListScreen(navController = navController, viewModel = ViewModel())
+        }
+        composable(Screen.InputArticle.route){
+            InsertArticleScreen(navController = navController, viewModel = viewModel() )
         }
     }
 }
