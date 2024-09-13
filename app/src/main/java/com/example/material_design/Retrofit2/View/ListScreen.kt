@@ -5,6 +5,7 @@ package com.example.material_design.Retrofit2.View
 //noinspection UsingMaterialAndMaterial3Libraries
 
 import android.annotation.SuppressLint
+import android.widget.Toast
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+//noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material.Divider
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -30,6 +32,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
@@ -43,6 +46,7 @@ import com.example.material_design.Retrofit2.Route.Screen
 @Composable
 fun ListScreen(navController: NavHostController, viewModel: ViewModel) {
     val articles by viewModel.articles.observeAsState(emptyList())
+    val context = LocalContext.current
     Scaffold(
         topBar = {
             TopAppBar(
@@ -67,7 +71,25 @@ fun ListScreen(navController: NavHostController, viewModel: ViewModel) {
                     .background(Color.White)
             ) {
                 items(articles) { article ->
-                    ArticleItem(article)
+                    ArticleItem(
+                        article = article,
+                        onDeleteClick = { articleId ->
+                            viewModel.deleteArticle(articleId, onSuccess = {
+                                Toast.makeText(
+                                    context,
+                                    "Article delete ",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }, onFailure = { error ->
+                                Toast.makeText(
+                                    context,
+                                    "Error:$error",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                            )
+                        }, navController = navController
+                    )
                 }
             }
         }
@@ -76,7 +98,11 @@ fun ListScreen(navController: NavHostController, viewModel: ViewModel) {
 
 @SuppressLint("InvalidColorHexValue")
 @Composable
-fun ArticleItem(article: ArticleResponse) {
+fun ArticleItem(
+    article: ArticleResponse,
+    onDeleteClick: (Int) -> Unit,
+    navController: NavHostController
+) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -155,7 +181,7 @@ fun ArticleItem(article: ArticleResponse) {
         )
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { onDeleteClick(article.id) },
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(
                 Color(0xFFFF08080)
@@ -163,8 +189,18 @@ fun ArticleItem(article: ArticleResponse) {
         ) {
             Text(text = "Delete id ${article.id}")
         }
-
+//        navController.navigate("update/${article.id}")
+        Button(
+            onClick = {  },
+            modifier = Modifier,
+            colors = ButtonDefaults.buttonColors(
+                Color(0xFFFFBF00)
+            )
+        ) {
+            Text(text = "Update id ${article.id}")
+        }
         Divider(modifier = Modifier.padding(vertical = 8.dp))
+
     }
 
 }

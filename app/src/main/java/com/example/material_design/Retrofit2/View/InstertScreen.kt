@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -37,6 +38,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import com.example.material_design.Retorfit.ViewModel.ViewModel
 import com.example.material_design.Retrofit2.Model.ArticleRequest
+import com.example.material_design.Retrofit2.Route.Screen
+import java.time.LocalDate
 
 @SuppressLint("InvalidColorHexValue")
 @OptIn(ExperimentalMaterial3Api::class)
@@ -47,7 +50,7 @@ fun InsertArticleScreen(navController: NavHostController, viewModel: ViewModel) 
     var content by remember { mutableStateOf("") }
     var imageUri by remember { mutableStateOf<Uri?>(null) }
     var author by remember { mutableStateOf("") }
-    var publishedDate by remember { mutableStateOf("2024-09-12") }
+    var publishedDate by remember { mutableStateOf(LocalDate.now().toString()) }
     var views by remember { mutableStateOf(0) }
     var isPublished by remember { mutableStateOf(true) }
 
@@ -78,8 +81,12 @@ fun InsertArticleScreen(navController: NavHostController, viewModel: ViewModel) 
                 fontWeight = FontWeight.Bold,
                 fontSize = 30.sp,
                 modifier = Modifier
+                    .clickable {
+                        navController.navigate(Screen.ListScreen.route)
+                    }
                     .padding(20.dp)
                     .align(Alignment.Center)
+
             )
         }
         OutlinedTextField(
@@ -191,6 +198,7 @@ fun InsertArticleScreen(navController: NavHostController, viewModel: ViewModel) 
                         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     }
                 )
+                navController.navigate(Screen.ListScreen.route)
             },
             modifier = Modifier.padding(top = 16.dp),
             colors = ButtonDefaults.buttonColors(
