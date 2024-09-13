@@ -26,7 +26,6 @@ class ViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     _articles.value = response.body()?.payload ?: emptyList()
 //                    Log.d("viewData", "Data${response}")
-
                 } else {
                     Log.e("ViewModel", "Error: ${response.message()}")
                 }
@@ -45,6 +44,7 @@ class ViewModel : ViewModel() {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     onSuccess()
+                    fetchArticles()
                 } else {
                     onFailure("Failed to create article")
                 }
@@ -77,36 +77,20 @@ class ViewModel : ViewModel() {
         })
     }
 
-    private val _article = MutableLiveData<ArticleResponse?>()
-    val article: LiveData<ArticleResponse?> = _article
-
-    fun getArticleById(id: Int) {
-        RetrofitInstant.apiService.getArticleById(id).enqueue(object : Callback<ArticleResponse> {
-            override fun onResponse(call: Call<ArticleResponse>, response: Response<ArticleResponse>) {
-                if (response.isSuccessful) {
-                    _article.value = response.body()
-                } else {
-                    Log.e("ViewModel", "Error fetching article: ${response.message()}")
-                }
-            }
-
-            override fun onFailure(call: Call<ArticleResponse>, t: Throwable) {
-                Log.e("ViewModel", "Failure fetching article: ${t.message}")
-                _article.value = null
-            }
-        })
+    fun getArticleById(id: Int): ArticleResponse {
+        return _articles.value?.find { it.id == id }
+            ?: throw IllegalArgumentException("Article not found")
     }
-
     fun updateArticle(id: Int, article: ArticleRequest, onSuccess: () -> Unit, onFailure: (String) -> Unit) {
         RetrofitInstant.apiService.updateArticle(id, article).enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
+                    fetchArticles()
                     onSuccess()
                 } else {
                     onFailure("Failed to update article")
                 }
             }
-
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 onFailure(t.message ?: "An error occurred")
             }

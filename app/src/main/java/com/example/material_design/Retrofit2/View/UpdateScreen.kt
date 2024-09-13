@@ -23,6 +23,7 @@ import androidx.navigation.NavHostController
 import com.example.material_design.Retorfit.Model.ArticleResponse
 import com.example.material_design.Retorfit.ViewModel.ViewModel
 import com.example.material_design.Retrofit2.Model.ArticleRequest
+import com.example.material_design.Retrofit2.Route.Screen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,7 +110,7 @@ fun UpdateArticleScreen(
                     article = updatedArticle,
                     onSuccess = {
                         Toast.makeText(context, "Article updated successfully", Toast.LENGTH_SHORT).show()
-                        navController.popBackStack() // Navigate back after update
+                        navController.navigate(Screen.ListScreen.route) // Navigate back after update
                     },
                     onFailure = { errorMessage ->
                         Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()

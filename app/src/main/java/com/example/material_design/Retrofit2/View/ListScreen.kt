@@ -60,7 +60,6 @@ fun ListScreen(navController: NavHostController, viewModel: ViewModel) {
                             text = "Input", fontSize = 20.sp, color = Color.Black
                         )
                     }
-
                 }
             )
         },
@@ -77,7 +76,7 @@ fun ListScreen(navController: NavHostController, viewModel: ViewModel) {
                             viewModel.deleteArticle(articleId, onSuccess = {
                                 Toast.makeText(
                                     context,
-                                    "Article delete ",
+                                    "Article delete ${article.title} ",
                                     Toast.LENGTH_SHORT
                                 ).show()
                             }, onFailure = { error ->
@@ -191,7 +190,7 @@ fun ArticleItem(
         }
 //        navController.navigate("update/${article.id}")
         Button(
-            onClick = {  },
+            onClick = { navController.navigate("update/${article.id}") },
             modifier = Modifier,
             colors = ButtonDefaults.buttonColors(
                 Color(0xFFFFBF00)
@@ -200,9 +199,7 @@ fun ArticleItem(
             Text(text = "Update id ${article.id}")
         }
         Divider(modifier = Modifier.padding(vertical = 8.dp))
-
     }
-
 }
 
 

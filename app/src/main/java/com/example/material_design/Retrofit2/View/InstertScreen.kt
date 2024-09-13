@@ -156,7 +156,7 @@ fun InsertArticleScreen(navController: NavHostController, viewModel: ViewModel) 
 
         imageUri?.let { uri ->
             Text(
-                text = "Selected Image",
+                text = "Selected Image ",
                 color = Color.Green,
                 modifier = Modifier.padding(top = 8.dp)
             )
